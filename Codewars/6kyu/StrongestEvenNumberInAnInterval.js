@@ -1,29 +1,11 @@
-function strongestEven(n, m) {
-    let possibleNumber = []
-
-    for (let i = n; i <= m; i++) {
-        if (i % 2 === 0) {
-            possibleNumber.push(i)
+function strongestEven(n, m){
+    let val = n
+    for (let i = 1; i + val <= m ; i *= 2) {
+        if((val + i) % (i * 2) === 0){
+            val += i
         }
     }
-    let mainCount = 0
-    let max = 0
-
-    for (let i = 0; i < possibleNumber.length;) {
-        let count = 1
-        let nextStep = possibleNumber[i]
-        while ((nextStep / 2) % 2 === 0) {
-            nextStep = nextStep / 2
-            count++
-        }
-        if(mainCount < count){
-            mainCount = count
-            max = possibleNumber[i]
-        }
-        i++
-    }
-
-    return max
+    return val
 }
 
 console.log(strongestEven(1, 2))
